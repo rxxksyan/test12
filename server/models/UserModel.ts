@@ -66,13 +66,21 @@ export async function addLikedTags(userId: string, tags: string[]): Promise<void
   const users = await readUsers();
   const user = users.find(u => u.id === userId);
   if (!user) return;
-  if (!user.likedTags) { user.likedTags = []; }
+
+  if (!user.likedTags) {
+    user.likedTags = [];
+  }
+
   const now = Date.now();
   for (const tag of tags) {
     const existing = user.likedTags.find(lt => lt.tag === tag);
-    if (existing) { existing.timestamp = now; }
-    else { user.likedTags.push({ tag, timestamp: now }); }
+    if (existing) {
+      existing.timestamp = now;
+    } else {
+      user.likedTags.push({ tag, timestamp: now });
+    }
   }
+
   await writeUsers(users);
 }
 
@@ -80,6 +88,7 @@ export async function getUserLikedTags(userId: string): Promise<string[]> {
   const users = await readUsers();
   const user = users.find(u => u.id === userId);
   if (!user || !user.likedTags) return [];
+
   const threeDaysAgo = Date.now() - 3 * 24 * 60 * 60 * 1000;
   return user.likedTags
     .filter(lt => lt.timestamp > threeDaysAgo)
@@ -109,4 +118,12 @@ export async function getUserLikedProductIds(userId: string): Promise<number[]> 
   const user = users.find(u => u.id === userId);
   if (!user || !user.likedProductIds) return [];
   return user.likedProductIds;
+}
+
+export async function updateUserRole(userId: string, role: 'user' | 'admin' | 'owner'): Promise<void> {
+  const users = await readUsers();
+  const user = users.find(u => u.id === userId);
+  if (!user) throw new Error('Пользователь не найден');
+  user.role = role;
+  await writeUsers(users);
 }
