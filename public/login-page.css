@@ -1,0 +1,65 @@
+/* =========================================
+   Доп стили страницы LoginPage
+   ========================================= */
+
+.login-page .auth-header h2 .accent {
+  display: none;
+}
+
+.login-page .auth-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.login-page .remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--wot-text-dim);
+  cursor: pointer;
+}
+
+.login-page .remember-me input[type="checkbox"] {
+  accent-color: var(--wot-primary);
+  width: 16px;
+  height: 16px;
+}
+
+.login-page .forgot-password {
+  color: var(--wot-primary);
+  text-decoration: none;
+}
+
+.login-page .forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-page .auth-link {
+  text-align: center;
+  color: var(--wot-text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.login-page .auth-link a {
+  color: var(--wot-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.login-page .auth-link a:hover {
+  color: #ffa03d;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .login-page .auth-options {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}

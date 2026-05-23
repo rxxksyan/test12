@@ -1,0 +1,255 @@
+/* =========================================
+   Доп стили страницы RegisterPage
+   ========================================= */
+
+.register-page .auth-header {
+  margin-bottom: 20px;
+}
+
+.register-page .auth-header h2 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.register-page .auth-header p {
+  font-size: 0.95rem;
+}
+
+.register-page .auth-header h2 .accent {
+  color: var(--wot-primary);
+}
+
+.register-page .wot-input-group {
+  margin-bottom: 18px;
+}
+
+.register-page .wot-label {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.register-page .wot-input {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+.register-page .auth-btn {
+  padding: 14px;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.register-page .back-btn {
+  padding: 10px;
+}
+
+.register-page .password-hint {
+  font-size: 0.75rem;
+  color: var(--wot-text-dim);
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.register-page .password-hint.show {
+  opacity: 1;
+  max-height: 30px;
+}
+
+.register-page .password-hint i.fa-check-circle {
+  color: #4caf50;
+}
+
+.register-page .password-hint i.fa-exclamation-circle {
+  color: #d32f2f;
+}
+
+.register-page .terms {
+  margin: 15px 0 18px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--wot-text-dim);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  background: rgba(0,0,0,0.1);
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #3a3a3a;
+}
+
+.register-page .terms input[type="checkbox"] {
+  accent-color: var(--wot-primary);
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.register-page .terms label {
+  color: var(--wot-text-dim);
+  cursor: pointer;
+}
+
+.register-page .terms a {
+  color: var(--wot-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-page .terms a:hover {
+  text-decoration: underline;
+}
+
+/* Адаптация под малые экраны */
+@media (max-height: 750px) {
+  .register-page .auth-card {
+    padding: 25px 35px;
+  }
+  
+  .register-page .auth-header {
+    margin-bottom: 12px;
+  }
+  
+  .register-page .auth-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .register-page .wot-input-group {
+    margin-bottom: 12px;
+  }
+  
+  .register-page .wot-input {
+    padding: 10px 14px;
+  }
+  
+  .register-page .terms {
+    margin: 10px 0 12px 0;
+    padding: 8px 10px;
+  }
+  
+  .register-page .auth-btn {
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
+  .register-page .back-btn {
+    padding: 8px;
+  }
+}
+
+@media (max-height: 650px) {
+  .register-page .auth-card {
+    padding: 20px 30px;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+  
+  .register-page .auth-header {
+    margin-bottom: 8px;
+  }
+  
+  .register-page .auth-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .register-page .auth-header p {
+    font-size: 0.85rem;
+  }
+  
+  .register-page .wot-input-group {
+    margin-bottom: 8px;
+  }
+  
+  .register-page .wot-label {
+    font-size: 0.85rem;
+    margin-bottom: 3px;
+  }
+  
+  .register-page .wot-input {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .register-page .terms {
+    margin: 5px 0 8px 0;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .register-page .auth-btn {
+    padding: 10px;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+  }
+  
+  .register-page .auth-link {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+  
+  .register-page .back-btn {
+    padding: 6px;
+    font-size: 0.85rem;
+  }
+  
+  .register-page .auth-card::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .register-page .auth-card::-webkit-scrollbar-track {
+    background: #2a2c30;
+    border-radius: 10px;
+  }
+  
+  .register-page .auth-card::-webkit-scrollbar-thumb {
+    background: var(--wot-primary);
+    border-radius: 10px;
+  }
+}
+
+@media (max-height: 550px) {
+  .register-page {
+    align-items: flex-start;
+  }
+  
+  .register-page .auth-card {
+    padding: 15px 20px;
+  }
+  
+  .register-page .auth-header h2 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Мобилки */
+@media (max-width: 480px) {
+  .register-page .auth-card {
+    padding: 25px 20px;
+  }
+  
+  .register-page .terms {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .register-page .auth-card {
+    padding: 15px 15px;
+  }
+  
+  .register-page .terms {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

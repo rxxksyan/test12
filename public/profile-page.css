@@ -1,0 +1,414 @@
+/* =========================================
+   Доп стили страницы ProfilePage
+   ========================================= */
+
+/* Анимки */
+.profile-page {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Заголовок и навигация */
+.profile-page .profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 120, 0, 0.3);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.profile-page .profile-title {
+  color: var(--wot-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.profile-page .profile-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: var(--wot-primary);
+  border-radius: 2px;
+}
+
+.profile-page .profile-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.profile-page .profile-actions .wot-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* Сетка профиля */
+.profile-page .profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+  .profile-page .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Карточки */
+.profile-page .wot-card {
+  background: linear-gradient(135deg, var(--wot-bg-panel) 0%, #1e2025 100%);
+  border: 1px solid #2f3136;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-page .wot-card:hover {
+  border-color: var(--wot-primary);
+  box-shadow: 0 15px 35px -5px rgba(255, 120, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.profile-page .wot-card-header {
+  padding: 18px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid #2f3136;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-page .wot-card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--wot-primary), transparent);
+}
+
+.profile-page .wot-card-title {
+  font-size: 1.3rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.profile-page .wot-card-title i {
+  color: var(--wot-primary);
+  font-size: 1.4rem;
+}
+
+.profile-page .wot-card-body {
+  padding: 20px;
+}
+
+/* Информационные строки */
+.profile-page .info-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.profile-page .info-row:hover {
+  background-color: rgba(255, 120, 0, 0.02);
+  padding-left: 5px;
+}
+
+.profile-page .info-row:last-child {
+  border-bottom: none;
+}
+
+.profile-page .info-label {
+  width: 130px;
+  color: var(--wot-secondary);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.profile-page .info-value {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
+  flex: 1;
+  position: relative;
+  padding-left: 10px;
+  border-left: 2px solid var(--wot-primary);
+}
+
+/* Email секция */
+.profile-page .email-value-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  border-left: 2px solid var(--wot-primary);
+}
+
+.profile-page .email-hidden {
+  color: var(--wot-text-dim);
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-page .email-visible {
+  color: var(--wot-primary);
+  font-weight: 600;
+  background: rgba(255, 120, 0, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 120, 0, 0.3);
+}
+
+.profile-page .wot-btn-small {
+  padding: 6px 15px;
+  font-size: 0.85rem;
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #4a4a4a;
+  transition: all 0.2s ease;
+}
+
+.profile-page .wot-btn-small:hover {
+  background: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+  border-color: var(--wot-primary);
+  transform: scale(1.05);
+}
+
+.profile-page .wot-btn-small i {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.profile-page .wot-btn-small:hover i {
+  transform: scale(1.1);
+}
+
+/* Информационная заметка */
+.profile-page .info-note {
+  margin: 15px 20px 20px;
+  padding: 12px 15px;
+  background: rgba(255, 120, 0, 0.05);
+  border: 1px solid rgba(255, 120, 0, 0.2);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--wot-text-dim);
+}
+
+.profile-page .info-note i {
+  color: var(--wot-primary);
+  font-size: 1.1rem;
+}
+
+/* Форма смены пароля */
+.profile-page .password-card .wot-card-body {
+  padding: 25px;
+}
+
+.profile-page .wot-input-group {
+  margin-bottom: 20px;
+}
+
+.profile-page .wot-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 8px;
+  color: var(--wot-text-main);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-page .wot-label i {
+  color: var(--wot-primary);
+  font-size: 0.9rem;
+}
+
+.profile-page .wot-input {
+  width: 100%;
+  padding: 14px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.profile-page .wot-input:focus {
+  border-color: var(--wot-primary);
+  box-shadow: 0 0 0 3px rgba(255, 120, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.profile-page .wot-input:hover {
+  border-color: #5a5a5a;
+}
+
+/* Кнопка отправки формы */
+.profile-page .wot-btn-primary {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ff8c00 0%, #cc6a00 100%);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-page .wot-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.profile-page .wot-btn-primary:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.profile-page .wot-btn-primary i {
+  position: relative;
+  z-index: 1;
+}
+
+/* Сообщение об ошибке */
+.profile-page .error-message {
+  background-color: rgba(211, 47, 47, 0.15);
+  border-left: 4px solid #d32f2f;
+  border-radius: 4px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+
+.profile-page .error-message::before {
+  content: '⚠️';
+  font-size: 1.1rem;
+}
+
+/* Футер профиля */
+.profile-page .profile-footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 120, 0, 0.2);
+  color: var(--wot-text-dim);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.profile-page .profile-footer i {
+  color: var(--wot-primary);
+  font-size: 1.2rem;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 576px) {
+  .profile-page .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-page .profile-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .profile-page .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .profile-page .info-label {
+    width: 100%;
+  }
+  
+  .profile-page .info-value,
+  .profile-page .email-value-container {
+    width: 100%;
+    padding-left: 0;
+    border-left: none;
+  }
+  
+  .profile-page .email-value-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-page .wot-btn-small {
+    width: 100%;
+    justify-content: center;
+  }
+}

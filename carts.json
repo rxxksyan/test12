@@ -1,0 +1,33 @@
+[
+  {
+    "userId": "1773388263463",
+    "items": [],
+    "updatedAt": "2026-03-14T07:36:47.565Z"
+  },
+  {
+    "userId": "1772201955920",
+    "items": [
+      {
+        "productId": 5,
+        "quantity": 1,
+        "product": {
+          "id": 5,
+          "name": "VK 72.01 (K)",
+          "nation": "germany",
+          "type": "heavy",
+          "level": 10,
+          "img": "images/VK7201K.png",
+          "price": 22000,
+          "inStock": false,
+          "hp": "2 500",
+          "dmg": "750",
+          "dpm": "2 250",
+          "ptrs": "246",
+          "ptrp": "350",
+          "spw": "10"
+        }
+      }
+    ],
+    "updatedAt": "2026-03-14T07:34:06.710Z"
+  }
+]

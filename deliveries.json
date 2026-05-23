@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1772698675562",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 1,
+        "productName": "Black Rock",
+        "productImg": "images/BlackRock.png",
+        "quantity": 3,
+        "price": 25000
+      }
+    ],
+    "totalPrice": 75000,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T08:17:55.562Z"
+  },
+  {
+    "id": "1772699858452",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 1,
+        "productName": "Black Rock",
+        "productImg": "images/BlackRock.png",
+        "quantity": 2,
+        "price": 25000
+      }
+    ],
+    "totalPrice": 50000,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T08:37:38.452Z"
+  },
+  {
+    "id": "1772700054496",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 1,
+        "productName": "Black Rock",
+        "productImg": "images/BlackRock.png",
+        "quantity": 7,
+        "price": 25000
+      }
+    ],
+    "totalPrice": 175000,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T08:40:54.496Z"
+  },
+  {
+    "id": "1772702248082",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 2,
+        "productName": "Kampfpanzer 07 P(E)",
+        "productImg": "images/KPZ07PE.png",
+        "quantity": 11,
+        "price": 20100
+      }
+    ],
+    "totalPrice": 221100,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T09:17:28.082Z"
+  },
+  {
+    "id": "1772704938347",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 2,
+        "productName": "E 100",
+        "productImg": "images/tanks/e-100.png",
+        "quantity": 32,
+        "price": 6100
+      }
+    ],
+    "totalPrice": 195200,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T10:02:18.347Z"
+  },
+  {
+    "id": "1772704974837",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 9,
+        "productName": "ИС-7",
+        "productImg": "images/IS7.png",
+        "quantity": 1,
+        "price": 5900
+      }
+    ],
+    "totalPrice": 5900,
+    "address": "Белецкого, 32",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T10:02:54.837Z"
+  },
+  {
+    "id": "1772705417955",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 9,
+        "productName": "ИС-7",
+        "productImg": "images/IS7.png",
+        "quantity": 1,
+        "price": 5900
+      }
+    ],
+    "totalPrice": 5900,
+    "address": "йцйыфв",
+    "phone": "фывфыв",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T10:10:17.955Z"
+  },
+  {
+    "id": "1772737191536",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 2,
+        "productName": "E 100",
+        "productImg": "images/tanks/e-100.png",
+        "quantity": 2,
+        "price": 6100
+      }
+    ],
+    "totalPrice": 12200,
+    "address": "йцйыфв",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-05T18:59:51.536Z"
+  },
+  {
+    "id": "1772861770863",
+    "userId": "1772697864764",
+    "items": [
+      {
+        "productId": 2,
+        "productName": "E 100",
+        "productImg": "images/tanks/e-100.png",
+        "quantity": 1,
+        "price": 6100
+      }
+    ],
+    "totalPrice": 6100,
+    "address": "zigor",
+    "phone": "+375 (25) 756-03-65",
+    "email": "n.smantser555@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-07T05:36:10.863Z"
+  },
+  {
+    "id": "1773473807562",
+    "userId": "1773388263463",
+    "items": [
+      {
+        "productId": 5,
+        "productName": "VK 72.01 (K)",
+        "productImg": "images/VK7201K.png",
+        "quantity": 1,
+        "price": 22000
+      }
+    ],
+    "totalPrice": 22000,
+    "address": "г. Бахмут ул. Крымская 14 корпус 88",
+    "phone": "+375297777777",
+    "email": "12345@gmail.com",
+    "paymentMethod": "card",
+    "status": "pending",
+    "createdAt": "2026-03-14T07:36:47.562Z"
+  }
+]

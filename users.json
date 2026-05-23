@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1772201955920",
+    "nickname": "Realtapok",
+    "email": "12345@gmail.com",
+    "passwordHash": "$2b$10$18NvhZ4ARSKug5cDTYtSXekR0qj9VkdG7ScH8LFfFXgYjzsfiz0lm",
+    "createdAt": "2026-02-27T14:19:15.920Z"
+  },
+  {
+    "id": "1772212259656",
+    "nickname": "KorbenDallasTopStrelok",
+    "email": "korben@gmail.com",
+    "passwordHash": "$2b$10$C/zK6JXMl26qJxHfhlTuMu.CvutFOVED9MgCldQeYXFJFHB5kxY0i",
+    "createdAt": "2026-02-27T17:10:59.656Z"
+  },
+  {
+    "id": "1772447944115",
+    "nickname": "RealTaP0K",
+    "email": "tankoviiyhan@gmail.com",
+    "passwordHash": "$2b$10$M8v1kPAUSMRWtlvXxZAA/ObdfYXOycgL6S7v1ONte7P1vkDez9NIa",
+    "createdAt": "2026-03-02T10:39:04.115Z"
+  },
+  {
+    "id": "1772449747886",
+    "nickname": "KitaVusli",
+    "email": "vutakusli@gmail.com",
+    "passwordHash": "$2b$10$Lwy/e4aC1.1/Xd/mxgmQGOteh1tvm8NkaNXcqbx29I.ovsHCyuVsq",
+    "createdAt": "2026-03-02T11:09:07.886Z"
+  },
+  {
+    "id": "1772474460028",
+    "nickname": "KitaVusli2",
+    "email": "vutakusli2@gmail.com",
+    "passwordHash": "$2b$10$PsmE24mDMkItW5jrqK4h3eGAvTJJdej1VFTaTtziFuL/qPo0VoqMC",
+    "createdAt": "2026-03-02T18:01:00.028Z"
+  },
+  {
+    "id": "1773388263463",
+    "nickname": "Китя Вислый",
+    "email": "vitalik@gmail.com",
+    "passwordHash": "$2b$10$lQAv2qCohf0yDSkS35jcneZ1oiKW24RJC5RajBUUKEe4zX17u6xzO",
+    "createdAt": "2026-03-13T07:51:03.463Z"
+  }
+]
