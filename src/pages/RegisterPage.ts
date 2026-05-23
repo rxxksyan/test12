@@ -1,6 +1,7 @@
 import { api } from '../services/api.js';
 import { router } from '../main.js';
 import { AuthResponse } from '../types/index.js';
+import { t } from '../services/locale.js';
 
 function showNotification(message: string, isError: boolean = true) {
   const existing = document.querySelector('.custom-notification');
@@ -30,55 +31,55 @@ export function renderRegisterPage() {
     <div class="auth-page register-page">
       <div class="auth-card">
         <div class="auth-header">
-          <h2>IYHAN SHOP</h2>
-          <p>Создание нового аккаунта</p>
+          <h2>${t('app.title')}</h2>
+          <p>${t('auth.register.title')}</p>
         </div>
-        <form id="register-form">
+        <form id="register-form" data-registration>
           <div class="wot-input-group">
             <label class="wot-label">
               <i class="fas fa-user"></i>
-              Никнейм
+              ${t('form.nickname')}
             </label>
-            <input type="text" class="wot-input" id="nickname" placeholder="Ваш никнейм" required>
+            <input type="text" class="wot-input" id="nickname" placeholder="${t('form.placeholder.nickname')}" required>
           </div>
           <div class="wot-input-group">
             <label class="wot-label">
               <i class="fas fa-envelope"></i>
-              Email
+              ${t('form.email')}
             </label>
-            <input type="email" class="wot-input" id="email" placeholder="your@email.com" required>
+            <input type="email" class="wot-input" id="email" placeholder="${t('form.placeholder.email')}" required>
           </div>
           <div class="wot-input-group">
             <label class="wot-label">
               <i class="fas fa-lock"></i>
-              Пароль
+              ${t('form.password')}
             </label>
-            <input type="password" class="wot-input" id="password" placeholder="Минимум 6 символов" required minlength="6">
+            <input type="password" class="wot-input" id="password" placeholder="${t('form.placeholder.password')}" required minlength="6">
           </div>
           <div class="wot-input-group">
             <label class="wot-label">
               <i class="fas fa-lock"></i>
-              Подтверждение пароля
+              ${t('form.confirmPassword')}
             </label>
-            <input type="password" class="wot-input" id="confirm-password" placeholder="Повторите пароль" required minlength="6">
+            <input type="password" class="wot-input" id="confirm-password" placeholder="${t('form.placeholder.password')}" required minlength="6">
             <div class="password-hint" id="password-match-hint">
-              <i class="fas fa-check-circle"></i> Пароли совпадают
+              <i class="fas fa-check-circle"></i> ${t('auth.register.passwordMatch')}
             </div>
           </div>
           <div class="terms">
             <input type="checkbox" id="terms" required>
-            <label for="terms">Я принимаю <a href="#">условия использования</a> и <a href="#">политику конфиденциальности</a></label>
+            <label for="terms">${t('auth.register.terms')}</label>
           </div>
           <button type="submit" class="auth-btn" id="submit-btn">
-            <i class="fas fa-user-plus"></i> Зарегистрироваться
+            <i class="fas fa-user-plus"></i> ${t('auth.register.btn')}
           </button>
           <div class="auth-link">
             <div style="text-align: center; width: 100%;">
-              Уже есть аккаунт? <a href="#" id="login-link">Войти</a>
+              ${t('auth.register.hasAccount')} <a href="#" id="login-link">${t('auth.register.login')}</a>
             </div>
           </div>
           <button type="button" class="back-btn" id="back-btn">
-            <i class="fas fa-arrow-left"></i> На главную
+            <i class="fas fa-arrow-left"></i> ${t('nav.back')}
           </button>
         </form>
       </div>
@@ -98,10 +99,10 @@ export function renderRegisterPage() {
     
     if (passwordInput.value === confirmInput.value) {
       matchHint.classList.add('show');
-      matchHint.innerHTML = '<i class="fas fa-check-circle"></i> Пароли совпадают';
+      matchHint.innerHTML = `<i class="fas fa-check-circle"></i> ${t('auth.register.passwordMatch')}`;
     } else {
       matchHint.classList.add('show');
-      matchHint.innerHTML = '<i class="fas fa-exclamation-circle"></i> Пароли не совпадают';
+      matchHint.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${t('auth.register.passwordNoMatch')}`;
     }
   }
 
@@ -151,11 +152,11 @@ export function renderRegisterPage() {
         router.navigateTo('/login');
       }, 1500);
       
-    } catch (err: any) {
+    } catch (err: unknown) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Зарегистрироваться';
+      submitBtn.innerHTML = `<i class="fas fa-user-plus"></i> ${t('auth.register.btn')}`;
       
-      let errorMessage = err.message || 'Ошибка при регистрации';
+      let errorMessage = err instanceof Error ? err.message : 'Ошибка при регистрации';
       
       if (errorMessage.includes('email already exists')) {
         errorMessage = 'Пользователь с таким email уже существует';
