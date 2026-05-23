@@ -23,8 +23,9 @@ export async function register(req: Request, res: Response) {
     const user = await UserModel.createUser(nickname, email, password, phone);
 
     req.session.userId = user.id;
+    req.session.role = user.role;
 
-    res.status(201).json({ message: 'Регистрация прошла успешно', user: { id: user.id, nickname: user.nickname, email: user.email, phone: user.phone } });
+    res.status(201).json({ message: 'Регистрация прошла успешно', user: { id: user.id, nickname: user.nickname, email: user.email, phone: user.phone, role: user.role } });
   } catch (err: unknown) {
     console.error(err);
     res.status(500).json({ message: 'Ошибка сервера 4' });
@@ -50,8 +51,9 @@ export async function login(req: Request, res: Response) {
     }
 
     req.session.userId = user.id;
+    req.session.role = user.role;
 
-    res.json({ message: 'Авторизация прошла успешно', user: { id: user.id, nickname: user.nickname, email: user.email } });
+    res.json({ message: 'Авторизация прошла успешно', user: { id: user.id, nickname: user.nickname, email: user.email, role: user.role } });
   } catch (err: unknown) {
     console.error(err);
     res.status(500).json({ message: 'Ошибка сервера 2' });
@@ -76,6 +78,8 @@ export async function getMe(req: Request, res: Response) {
         id: user.id, 
         nickname: user.nickname, 
         email: user.email,
+        phone: user.phone,
+        role: user.role,
         createdAt: user.createdAt
       } 
     });
@@ -137,5 +141,25 @@ export async function changePassword(req: Request, res: Response) {
   } catch (err: unknown) {
     console.error('Ошибка смены пароля:', err);
     res.status(500).json({ message: 'Ошибка сервера 4' });
+  }
+}
+
+export async function setUserRole(req: Request, res: Response) {
+  const { userId, role } = req.body;
+
+  if (!userId || !role) {
+    return res.status(400).json({ message: 'Не указан userId или роль' });
+  }
+
+  if (!['user', 'admin'].includes(role)) {
+    return res.status(400).json({ message: 'Некорректная роль. Допустимо: user, admin' });
+  }
+
+  try {
+    await UserModel.updateUserRole(userId, role);
+    res.json({ message: 'Роль пользователя обновлена' });
+  } catch (err: unknown) {
+    console.error(err);
+    res.status(500).json({ message: 'Ошибка сервера' });
   }
 }

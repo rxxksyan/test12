@@ -56,6 +56,9 @@ export async function addItemToCart(req: Request, res: Response) {
   } catch (err: unknown) {
     console.error(err);
     const errorMessage = err instanceof Error ? err.message : 'Ошибка при добавлении товара';
+    if (errorMessage === 'Товар не найден') {
+      return res.status(404).json({ message: errorMessage });
+    }
     res.status(500).json({ message: errorMessage });
   }
 }

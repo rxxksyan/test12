@@ -40,5 +40,362 @@
     "email": "vitalik@gmail.com",
     "passwordHash": "$2b$10$lQAv2qCohf0yDSkS35jcneZ1oiKW24RJC5RajBUUKEe4zX17u6xzO",
     "createdAt": "2026-03-13T07:51:03.463Z"
+  },
+  {
+    "id": "1778916607359",
+    "nickname": "rxxksyan",
+    "email": "n.smantser555@gmail.com",
+    "passwordHash": "$2b$10$fx1LM2pUj6pJKVG1CXzMU.s97bgwtE15exeEo3OVmJKLUY/LRLKD6",
+    "createdAt": "2026-05-16T07:30:07.359Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "germany",
+        "timestamp": 1778916629675
+      },
+      {
+        "tag": "heavy",
+        "timestamp": 1779092180222
+      },
+      {
+        "tag": "t10",
+        "timestamp": 1779091652518
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779092180222
+      },
+      {
+        "tag": "armored",
+        "timestamp": 1778916629675
+      },
+      {
+        "tag": "italy",
+        "timestamp": 1779089576212
+      },
+      {
+        "tag": "medium",
+        "timestamp": 1779089576212
+      },
+      {
+        "tag": "t9",
+        "timestamp": 1779089576212
+      },
+      {
+        "tag": "sweden",
+        "timestamp": 1779089588045
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779091652518
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779092180222
+      },
+      {
+        "tag": "france",
+        "timestamp": 1779091652518
+      },
+      {
+        "tag": "autoloader",
+        "timestamp": 1779092180222
+      },
+      {
+        "tag": "czech",
+        "timestamp": 1779092180222
+      }
+    ],
+    "likedProductIds": [
+      53,
+      33,
+      47,
+      14,
+      54,
+      46
+    ]
+  },
+  {
+    "id": "owner1778916",
+    "nickname": "Owner",
+    "email": "owner@shop.com",
+    "passwordHash": "$2b$10$b6frqzWl5vAUU3aBSaKXneM.O2AdBANqRSPrZo0a7BhLbabN.8oIm",
+    "createdAt": "2026-05-16T07:00:00.000Z",
+    "role": "owner",
+    "likedTags": [
+      {
+        "tag": "usa",
+        "timestamp": 1778920048234
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779437103369
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779437103369
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779437110744
+      },
+      {
+        "tag": "ussr",
+        "timestamp": 1779434334002
+      },
+      {
+        "tag": "medium",
+        "timestamp": 1779437110744
+      },
+      {
+        "tag": "t10",
+        "timestamp": 1779437092478
+      },
+      {
+        "tag": "t7",
+        "timestamp": 1779090816608
+      },
+      {
+        "tag": "heavy",
+        "timestamp": 1779437092478
+      },
+      {
+        "tag": "t9",
+        "timestamp": 1779437110744
+      },
+      {
+        "tag": "other",
+        "timestamp": 1778920088986
+      },
+      {
+        "tag": "t11",
+        "timestamp": 1778920088986
+      },
+      {
+        "tag": "japan",
+        "timestamp": 1779086833173
+      },
+      {
+        "tag": "germany",
+        "timestamp": 1779437110744
+      },
+      {
+        "tag": "armored",
+        "timestamp": 1779437092478
+      },
+      {
+        "tag": "france",
+        "timestamp": 1779090816608
+      },
+      {
+        "tag": "light",
+        "timestamp": 1779090816608
+      },
+      {
+        "tag": "autoloader",
+        "timestamp": 1779090816608
+      },
+      {
+        "tag": "sweden",
+        "timestamp": 1779437103369
+      },
+      {
+        "tag": "test_tag_1",
+        "timestamp": 1779438142801
+      },
+      {
+        "tag": "test_tag_2",
+        "timestamp": 1779438142801
+      }
+    ],
+    "likedProductIds": [
+      53,
+      54,
+      50,
+      1,
+      2,
+      47,
+      21
+    ]
+  },
+  {
+    "id": "1779086129273",
+    "nickname": "newIuhan",
+    "email": "123@gmail.com",
+    "passwordHash": "$2b$10$GvJve5WMm2ZS9PsKlbhHo.L0JAQzSqnNZqf84983hFqUtjqwMt4Le",
+    "createdAt": "2026-05-18T06:35:29.273Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "ussr",
+        "timestamp": 1779086320206
+      },
+      {
+        "tag": "medium",
+        "timestamp": 1779086320206
+      },
+      {
+        "tag": "t10",
+        "timestamp": 1779086392255
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779086392255
+      },
+      {
+        "tag": "uk",
+        "timestamp": 1779086392255
+      },
+      {
+        "tag": "heavy",
+        "timestamp": 1779086392255
+      }
+    ]
+  },
+  {
+    "id": "1779434408412",
+    "nickname": "fitz",
+    "email": "mog@gmail.com",
+    "passwordHash": "$2b$10$lkTa7k0ql/trcIds8SJRHuvnPfte5WXYUstoNgj8cTPZIgphYyh8m",
+    "createdAt": "2026-05-22T07:20:08.412Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "sweden",
+        "timestamp": 1779434481508
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779434481508
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779434481508
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779434481508
+      }
+    ],
+    "likedProductIds": [
+      47
+    ]
+  },
+  {
+    "id": "1779435237852",
+    "nickname": "TestUser",
+    "email": "testuser@test.com",
+    "passwordHash": "$2b$10$UqxhAOVUT.FOXH8R/t5bC.XSfXZ5Qa1Wv2qxQAOQc7c/etGrTyRqa",
+    "createdAt": "2026-05-22T07:33:57.852Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "sweden",
+        "timestamp": 1779435255817
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779435255817
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779435255817
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779435401953
+      },
+      {
+        "tag": "usa",
+        "timestamp": 1779435401953
+      },
+      {
+        "tag": "medium",
+        "timestamp": 1779435401953
+      },
+      {
+        "tag": "t7",
+        "timestamp": 1779435401953
+      }
+    ],
+    "likedProductIds": [
+      47,
+      52
+    ]
+  },
+  {
+    "id": "1779437144617",
+    "nickname": "rxx",
+    "email": "testuser1@test.com",
+    "passwordHash": "$2b$10$/P6WMyhvAVy09oXyowhF2eMbh4oKM9kZe5gCcELXDDu0fhfA1z4Jm",
+    "createdAt": "2026-05-22T08:05:44.617Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "sweden",
+        "timestamp": 1779437161058
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779437161058
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779437161058
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779437302863
+      },
+      {
+        "tag": "ussr",
+        "timestamp": 1779437302863
+      },
+      {
+        "tag": "heavy",
+        "timestamp": 1779437302863
+      },
+      {
+        "tag": "t10",
+        "timestamp": 1779437302863
+      },
+      {
+        "tag": "legendary",
+        "timestamp": 1779437302863
+      }
+    ],
+    "likedProductIds": [
+      47,
+      9
+    ]
+  },
+  {
+    "id": "1779512834584",
+    "nickname": "rxxxksyan",
+    "email": "n.smantser1111@gmail.com",
+    "passwordHash": "$2b$10$nwT93ks36lbGNdKE0LUlYe3jneg4xi6UNCzhFVqoprJzqRPzpyCMy",
+    "createdAt": "2026-05-23T05:07:14.584Z",
+    "role": "user",
+    "likedTags": [
+      {
+        "tag": "sweden",
+        "timestamp": 1779512876732
+      },
+      {
+        "tag": "at",
+        "timestamp": 1779512876732
+      },
+      {
+        "tag": "t8",
+        "timestamp": 1779512876732
+      },
+      {
+        "tag": "premium",
+        "timestamp": 1779512876732
+      }
+    ],
+    "likedProductIds": [
+      47
+    ]
   }
 ]

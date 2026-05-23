@@ -88,9 +88,12 @@ export async function createNewDelivery(req: Request, res: Response) {
   } catch (err) {
     console.error(err);
     const errorMessage = err instanceof Error ? err.message : 'Ошибка при оформлении доставки';
+    if (errorMessage === 'Корзина пуста') {
+      return res.status(400).json({ message: errorMessage });
+    }
     res.status(500).json({ message: errorMessage });
   }
-}
+};
 
 // Отменить доставку
 export async function cancelDeliveryById(req: Request, res: Response) {
@@ -111,6 +114,12 @@ export async function cancelDeliveryById(req: Request, res: Response) {
   } catch (err) {
     console.error(err);
     const errorMessage = err instanceof Error ? err.message : 'Ошибка при отмене доставки';
+    if (errorMessage === 'Доставка не найдена') {
+      return res.status(404).json({ message: errorMessage });
+    }
+    if (errorMessage === 'Невозможно отменить доставку с текущим статусом') {
+      return res.status(400).json({ message: errorMessage });
+    }
     res.status(500).json({ message: errorMessage });
   }
 }
