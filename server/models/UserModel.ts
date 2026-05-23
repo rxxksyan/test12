@@ -4,6 +4,11 @@ import bcrypt from 'bcrypt';
 
 const USERS_FILE = path.join(__dirname, '../../users.json');
 
+export interface LikedTag {
+  tag: string;
+  timestamp: number;
+}
+
 export interface User {
   id: string;
   nickname: string;
@@ -11,6 +16,9 @@ export interface User {
   phone?: string;
   passwordHash: string;
   createdAt: string;
+  role?: 'user' | 'admin' | 'owner';
+  likedTags?: LikedTag[];
+  likedProductIds?: number[];
 }
 
 export async function readUsers(): Promise<User[]> {
@@ -45,7 +53,9 @@ export async function createUser(nickname: string, email: string, password: stri
     email,
     phone,
     passwordHash,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
+    role: 'user',
+    likedTags: []
   };
   users.push(newUser);
   await writeUsers(users);
