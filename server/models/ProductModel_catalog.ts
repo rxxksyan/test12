@@ -19,6 +19,8 @@ export interface Product {
   ptrp: string;
   spw: string;
   description?: string;
+  tags?: string[];
+  likesCount?: number;
 }
 
 export interface ProductFilters {
@@ -51,7 +53,6 @@ export async function getProductById(id: number): Promise<Product | undefined> {
 export async function getFilteredProducts(filters: ProductFilters): Promise<Product[]> {
   let products = await readProducts();
 
-  // Поиск по названию/описанию
   if (filters.search) {
     const searchLower = filters.search.toLowerCase();
     products = products.filter(p => 
@@ -60,27 +61,22 @@ export async function getFilteredProducts(filters: ProductFilters): Promise<Prod
     );
   }
 
-  // Фильтр по нации
   if (filters.nation) {
     products = products.filter(p => p.nation === filters.nation);
   }
 
-  // Фильтр по типу
   if (filters.type) {
     products = products.filter(p => p.type === filters.type);
   }
 
-  // Фильтр по уровню
   if (filters.level) {
     products = products.filter(p => p.level === filters.level);
   }
 
-  // Фильтр по наличию
   if (filters.inStock !== undefined) {
     products = products.filter(p => p.inStock === filters.inStock);
   }
 
-  // Сортировка по цене
   if (filters.sortBy === 'price-asc') {
     products.sort((a, b) => a.price - b.price);
   } else if (filters.sortBy === 'price-desc') {
@@ -106,4 +102,42 @@ export async function getAvailableLevels(): Promise<number[]> {
   const products = await readProducts();
   const levels = [...new Set(products.map(p => p.level))];
   return levels.sort((a, b) => a - b);
+}
+
+export async function writeProducts(products: Product[]): Promise<void> {
+  const fs = await import('fs/promises');
+  await fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+}
+
+export async function addProduct(product: Omit<Product, 'id'>): Promise<Product> {
+  const products = await readProducts();
+  const maxId = products.reduce((max, p) => Math.max(max, p.id), 0);
+  const newProduct: Product = {
+    ...product,
+    id: maxId + 1,
+    tags: product.tags || []
+  };
+  products.push(newProduct);
+  await writeProducts(products);
+  return newProduct;
+}
+
+export async function updateProduct(id: number, updates: Partial<Product>): Promise<Product | undefined> {
+  const products = await readProducts();
+  const index = products.findIndex(p => p.id === id);
+  if (index === -1) return undefined;
+
+  products[index] = { ...products[index], ...updates, id };
+  await writeProducts(products);
+  return products[index];
+}
+
+export async function deleteProduct(id: number): Promise<boolean> {
+  const products = await readProducts();
+  const index = products.findIndex(p => p.id === id);
+  if (index === -1) return false;
+
+  products.splice(index, 1);
+  await writeProducts(products);
+  return true;
 }
