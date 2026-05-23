@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { setLocale, getCurrentLocale } from '../controllers/controller_localization';
+import { getLocale, setLocale, getCurrentLocale } from '../controllers/controller_localization';
 
 const router = Router();
 
+router.get('/:lang', getLocale);
 router.post('/', setLocale);
 router.get('/', getCurrentLocale);
 
