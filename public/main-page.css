@@ -30,7 +30,18 @@
 
 .header-right {
   display: flex;
-  gap: 15px;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.header-right .wot-btn {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+}
+
+.header-left {
+  min-width: 0;
+  flex-shrink: 1;
 }
 
 .btn-icon {

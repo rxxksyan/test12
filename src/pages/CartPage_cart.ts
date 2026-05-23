@@ -2,9 +2,37 @@ import { apiCart } from '../services/api_cart.js';
 import { api } from '../services/api.js';
 import { router } from '../main.js';
 import { CartItem } from '../types/index_cart.js';
+import { t } from '../services/locale.js';
 
 let cartItems: CartItem[] = [];
 let cartTotal = 0;
+
+function getTypeName(type: string): string {
+  const types: Record<string, string> = {
+    'heavy': t('type.heavy'),
+    'medium': t('type.medium'),
+    'light': t('type.light'),
+    'at': t('type.at')
+  };
+  return types[type] || type;
+}
+
+function getNationName(nation: string): string {
+  const nations: Record<string, string> = {
+    'ussr': t('nation.ussr'),
+    'germany': t('nation.germany'),
+    'usa': t('nation.usa'),
+    'france': t('nation.france'),
+    'uk': t('nation.uk'),
+    'china': t('nation.china'),
+    'japan': t('nation.japan'),
+    'czech': t('nation.czech'),
+    'sweden': t('nation.sweden'),
+    'italy': t('nation.italy'),
+    'other': t('nation.other')
+  };
+  return nations[nation] || nation;
+}
 
 export async function renderCartPage() {
   const app = document.getElementById('app');
@@ -14,7 +42,7 @@ export async function renderCartPage() {
     <div class="wot-container">
       <div class="loading-message" style="text-align: center; padding: 50px;">
         <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--wot-primary);"></i>
-        <p style="margin-top: 20px;">Загрузка корзины...</p>
+        <p style="margin-top: 20px;">${t('cart.loading')}</p>
       </div>
     </div>
   `;
@@ -26,42 +54,40 @@ export async function renderCartPage() {
 
     app.innerHTML = `
       <div class="wot-container">
-        <!-- Шапка -->
         <div class="cart-header">
           <div class="header-left">
             <h1 class="shop-title">IYHAN<span class="accent">SHOP</span></h1>
-            <span class="cart-subtitle">КОРЗИНА</span>
+            <span class="cart-subtitle">${t('cart.title')}</span>
           </div>
           <div class="header-right">
             <button class="wot-btn" id="catalog-btn">
               <i class="fas fa-store btn-icon"></i>
-              Каталог
+              ${t('nav.toCatalog')}
             </button>
             <button class="wot-btn" id="main-btn">
               <i class="fas fa-home btn-icon"></i>
-              Главная
+              ${t('nav.home')}
             </button>
             <button class="wot-btn" id="logout-btn">
               <i class="fas fa-sign-out-alt btn-icon"></i>
-              Выйти
+              ${t('nav.logout')}
             </button>
           </div>
         </div>
 
         <div class="cart-content">
-          <!-- Левая часть - товары -->
           <div class="cart-items-section">
             <h2 class="section-title">
               <i class="fas fa-shopping-cart"></i>
-              Ваши товары
+              ${t('cart.title')}
             </h2>
             
             ${cartItems.length === 0 ? `
               <div class="cart-empty">
                 <i class="fas fa-shopping-basket cart-empty-icon"></i>
-                <p>Корзина пуста</p>
+                <p>${t('cart.empty')}</p>
                 <button class="wot-btn wot-btn-primary" id="go-catalog-btn">
-                  Перейти к покупкам
+                  ${t('cart.goShopping')}
                 </button>
               </div>
             ` : `
@@ -71,24 +97,23 @@ export async function renderCartPage() {
               
               <button class="wot-btn clear-cart-btn" id="clear-cart-btn">
                 <i class="fas fa-trash-alt"></i>
-                Очистить корзину
+                ${t('cart.clear')}
               </button>
             `}
           </div>
 
-          <!-- Правая часть - итоги -->
           ${cartItems.length > 0 ? `
             <div class="cart-summary-section">
               <div class="cart-summary">
-                <h3 class="summary-title">Итого</h3>
+                <h3 class="summary-title">${t('cart.total')}</h3>
                 
                 <div class="summary-row">
-                  <span>Товаров:</span>
-                  <span id="items-count">${cartItems.reduce((sum, item) => sum + item.quantity, 0)} шт.</span>
+                  <span>${t('cart.items')}</span>
+                  <span id="items-count">${cartItems.reduce((sum, item) => sum + item.quantity, 0)} ${t('cart.items')}</span>
                 </div>
                 
                 <div class="summary-row">
-                  <span>Сумма:</span>
+                  <span>${t('cart.sum')}</span>
                   <span class="summary-price" id="total-price">
                     <i class="fas fa-coins"></i>
                     ${cartTotal.toLocaleString()}
@@ -98,7 +123,7 @@ export async function renderCartPage() {
                 <hr class="summary-divider">
 
                 <div class="summary-row summary-total">
-                  <span>К оплате:</span>
+                  <span>${t('cart.toPay')}</span>
                   <span class="total-price-value" data-price="basket">
                     <i class="fas fa-coins"></i>
                     ${cartTotal.toLocaleString()}
@@ -107,18 +132,17 @@ export async function renderCartPage() {
 
                 <button class="wot-btn wot-btn-primary checkout-btn" id="checkout-btn">
                   <i class="fas fa-truck"></i>
-                  Оформить доставку
+                  ${t('cart.checkout')}
                 </button>
               </div>
             </div>
           ` : ''}
         </div>
 
-        <!-- Футер -->
         <div class="shop-footer">
           <p>
             <i class="far fa-copyright"></i>
-            2026 IYHANSHOP - Официальный магазин танков
+            2026 IYHANSHOP - ${t('common.footer')}
           </p>
         </div>
       </div>
@@ -132,13 +156,13 @@ export async function renderCartPage() {
       <div class="wot-container">
         <div class="error-message" style="text-align: center; padding: 50px;">
           <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #d32f2f;"></i>
-          <h2 style="margin-top: 20px;">Ошибка загрузки корзины</h2>
+          <h2 style="margin-top: 20px;">${t('cart.error')}</h2>
           <p style="color: #888; margin: 10px 0;">Пожалуйста, авторизуйтесь и попробуйте снова</p>
           <button class="wot-btn wot-btn-primary" onclick="window.location.reload()" style="margin-top: 20px;">
-            <i class="fas fa-sync-alt"></i> Обновить страницу
+            <i class="fas fa-sync-alt"></i> ${t('cart.retry')}
           </button>
           <button class="wot-btn" id="to-catalog-btn" style="margin-left: 10px;">
-            <i class="fas fa-store"></i> В каталог
+            <i class="fas fa-store"></i> ${t('nav.toCatalog')}
           </button>
         </div>
       </div>
@@ -160,13 +184,13 @@ function renderCartItem(item: CartItem): string {
       <div class="cart-item-info">
         <h4 class="cart-item-name" data-title="basket">${item.product.name}</h4>
         <div class="cart-item-details">
-          <span class="item-level">${item.product.level} ур.</span>
+          <span class="item-level">${item.product.level} ${t('badge.level')}</span>
           <span class="item-type">${getTypeName(item.product.type)}</span>
           <span class="item-nation">${getNationName(item.product.nation)}</span>
         </div>
         <p class="cart-item-price" data-price="basket">
           <i class="fas fa-coins"></i>
-          ${item.product.price.toLocaleString()} за шт.
+          ${item.product.price.toLocaleString()} ${t('cart.perItem')}
         </p>
       </div>
       
@@ -177,7 +201,7 @@ function renderCartItem(item: CartItem): string {
       </div>
       
       <div class="cart-item-total">
-        <p class="item-total-label">Сумма:</p>
+        <p class="item-total-label">${t('cart.sumLabel')}</p>
         <p class="item-total-price" id="total-${item.productId}">
           <i class="fas fa-coins"></i>
           ${(item.product.price * item.quantity).toLocaleString()}
@@ -191,33 +215,6 @@ function renderCartItem(item: CartItem): string {
   `;
 }
 
-function getTypeName(type: string): string {
-  const types: Record<string, string> = {
-    'heavy': 'ТТ',
-    'medium': 'СТ',
-    'light': 'ЛТ',
-    'at': 'ПТ'
-  };
-  return types[type] || type;
-}
-
-function getNationName(nation: string): string {
-  const nations: Record<string, string> = {
-    'ussr': 'СССР',
-    'germany': 'Германия',
-    'usa': 'США',
-    'france': 'Франция',
-    'uk': 'Великобритания',
-    'china': 'Китай',
-    'japan': 'Япония',
-    'czech': 'Чехия',
-    'sweden': 'Швеция',
-    'italy': 'Италия',
-    'other': 'Другое'
-  };
-  return nations[nation] || nation;
-}
-
 async function refreshCartDisplay() {
   try {
     const cartData = await apiCart.getCart();
@@ -227,7 +224,7 @@ async function refreshCartDisplay() {
     const itemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     
     const countEl = document.getElementById('items-count');
-    if (countEl) countEl.textContent = `${itemsCount} шт.`;
+    if (countEl) countEl.textContent = `${itemsCount} ${t('cart.items')}`;
 
     const priceEl = document.getElementById('total-price');
     if (priceEl) priceEl.innerHTML = `<i class="fas fa-coins"></i> ${cartTotal.toLocaleString()}`;

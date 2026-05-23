@@ -1,6 +1,7 @@
 import { api } from '../services/api.js';
 import { router } from '../main.js';
 import { AuthResponse } from '../types/index.js';
+import { t } from '../services/locale.js';
 
 export async function renderProfilePage() {
   const app = document.getElementById('app');
@@ -12,70 +13,63 @@ export async function renderProfilePage() {
 
     app.innerHTML = `
       <div class="wot-container profile-page">
-        <!-- Заголовок и навигация -->
         <div class="profile-header">
-          <h1 class="shop-title">IYHAN<span class="accent">SHOP</span> / <span class="profile-title">Личный кабинет</span></h1>
+          <h1 class="shop-title">IYHAN<span class="accent">SHOP</span> / <span class="profile-title">${t('profile.title')}</span></h1>
           <div class="profile-actions">
             <button class="wot-btn" id="back-to-main">
               <i class="fas fa-arrow-left btn-icon"></i>
-              На главную
+              ${t('nav.back')}
             </button>
             <button class="wot-btn" id="logout-from-profile">
               <i class="fas fa-sign-out-alt btn-icon"></i>
-              Выйти
+              ${t('nav.logout')}
             </button>
           </div>
         </div>
 
-        <!-- Основной контент: информация + форма смены пароля -->
         <div class="profile-grid">
-          <!-- Карточка информации о пользователе -->
           <div class="wot-card profile-info-card">
             <div class="wot-card-header">
               <h2 class="wot-card-title">
                 <i class="fas fa-id-card" style="margin-right: 10px;"></i>
-                Информация об аккаунте
+                ${t('profile.info')}
               </h2>
             </div>
             <div class="wot-card-body">
               <div class="info-row">
-                <span class="info-label">Никнейм:</span>
+                <span class="info-label">${t('profile.nickname')}</span>
                 <span class="info-value">${user.nickname}</span>
               </div>
               
-              <!-- Дата регистрации (если есть в данных) -->
               <div class="info-row">
-                <span class="info-label">На сайте с:</span>
-                <span class="info-value">${user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : 'Не указано'}</span>
+                <span class="info-label">${t('profile.since')}</span>
+                <span class="info-value">${user.createdAt ? new Date(user.createdAt).toLocaleDateString('ru-RU') : t('common.loading')}</span>
               </div>
               
-              <!-- Email со скрытием/отображением -->
               <div class="info-row email-row">
-                <span class="info-label">Email:</span>
+                <span class="info-label">${t('profile.email')}</span>
                 <div class="email-value-container">
                   <span class="info-value email-hidden" id="hidden-email">••••••@•••••</span>
                   <span class="info-value email-visible" id="visible-email" style="display: none;">${user.email}</span>
                   <button class="wot-btn wot-btn-small" id="toggle-email-btn">
                     <i class="fas fa-eye" id="email-eye-icon"></i>
-                    <span id="email-btn-text">Показать</span>
+                    <span id="email-btn-text">${t('profile.showEmail')}</span>
                   </button>
                 </div>
               </div>
             </div>
 
-            <!-- Заметочка про email -->
             <div class="info-note">
               <i class="fas fa-shield-alt" style="color: var(--wot-primary); margin-right: 5px;"></i>
-              <small class="text-dim">Email скрыт для защиты при трансляциях</small>
+              <small class="text-dim">${t('profile.emailNote')}</small>
             </div>
           </div>
 
-          <!-- Карточка смены пароля -->
           <div class="wot-card password-card">
             <div class="wot-card-header">
               <h2 class="wot-card-title">
                 <i class="fas fa-lock" style="margin-right: 10px;"></i>
-                Смена пароля
+                ${t('profile.changePassword')}
               </h2>
             </div>
             <div class="wot-card-body">
@@ -84,40 +78,39 @@ export async function renderProfilePage() {
                 <div class="wot-input-group">
                   <label for="old-password" class="wot-label">
                     <i class="fas fa-key"></i>
-                    Старый пароль
+                    ${t('form.oldPassword')}
                   </label>
-                  <input type="password" id="old-password" class="wot-input" placeholder="Введите старый пароль" required>
+                  <input type="password" id="old-password" class="wot-input" placeholder="${t('form.oldPassword')}" required>
                 </div>
                 <div class="wot-input-group">
                   <label for="new-password" class="wot-label">
                     <i class="fas fa-lock"></i>
-                    Новый пароль
+                    ${t('form.newPassword')}
                   </label>
-                  <input type="password" id="new-password" class="wot-input" placeholder="Минимум 6 символов" required minlength="6">
+                  <input type="password" id="new-password" class="wot-input" placeholder="${t('form.placeholder.password')}" required minlength="6">
                 </div>
                 <div class="wot-input-group">
                   <label for="confirm-password" class="wot-label">
                     <i class="fas fa-check-circle"></i>
-                    Подтвердите новый пароль
+                    ${t('form.confirmPassword')}
                   </label>
-                  <input type="password" id="confirm-password" class="wot-input" placeholder="Повторите новый пароль" required>
+                  <input type="password" id="confirm-password" class="wot-input" placeholder="${t('form.confirmPassword')}" required>
                 </div>
 
                 <div id="password-error" class="error-message" style="color: #d32f2f; margin-bottom: 15px; display: none;"></div>
                 <button type="submit" class="wot-btn wot-btn-primary" style="width: 100%;">
                   <i class="fas fa-sync-alt btn-icon"></i>
-                  Сменить пароль
+                  ${t('profile.changeBtn')}
                 </button>
               </form>
             </div>
           </div>
         </div>
 
-        <!-- Дополнительная информация (опционально) -->
         <div class="profile-footer">
           <p class="text-dim">
             <i class="fas fa-shield-alt" style="margin-right: 5px;"></i>
-            Безопасность вашего аккаунта — наш приоритет.
+            ${t('profile.security')}
           </p>
         </div>
       </div>
@@ -159,8 +152,8 @@ export async function renderProfilePage() {
         alert('Пароль успешно изменён. Пожалуйста, войдите заново.');
         await api.logout();
         router.navigateTo('/');
-      } catch (err: any) {
-        errorDiv.textContent = err.message || 'Ошибка при смене пароля. Проверьте старый пароль.';
+      } catch (err: unknown) {
+        errorDiv.textContent = err instanceof Error ? err.message : 'Ошибка при смене пароля. Проверьте старый пароль.';
         errorDiv.style.display = 'block';
       }
     });
@@ -181,16 +174,14 @@ export async function renderProfilePage() {
           hiddenEmail.style.display = 'none';
           visibleEmail.style.display = 'inline';
           emailIcon.className = 'fas fa-eye-slash';
-          emailBtnText.textContent = 'Скрыть';
+          emailBtnText.textContent = t('profile.hideEmail');
         } else {
           hiddenEmail.style.display = 'inline';
           visibleEmail.style.display = 'none';
           emailIcon.className = 'fas fa-eye';
-          emailBtnText.textContent = 'Показать';
+          emailBtnText.textContent = t('profile.showEmail');
         }
       });
-    } else {
-      console.warn('123');
     }
 
   } catch (error) {

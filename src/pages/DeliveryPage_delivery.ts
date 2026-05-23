@@ -3,6 +3,7 @@ import { apiCart } from '../services/api_cart.js';
 import { api } from '../services/api.js';
 import { router } from '../main.js';
 import { DeliveryFormData } from '../types/index_delivery.js';
+import { t } from '../services/locale.js';
 
 let captchaAnswer = 0;
 
@@ -10,114 +11,108 @@ export async function renderDeliveryPage() {
   const app = document.getElementById('app');
   if (!app) return;
 
-  // Показываем загрузку
   app.innerHTML = `
     <div class="wot-container">
       <div class="loading-message" style="text-align: center; padding: 50px;">
         <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--wot-primary);"></i>
-        <p style="margin-top: 20px;">Загрузка оформления...</p>
+        <p style="margin-top: 20px;">${t('delivery.loading')}</p>
       </div>
     </div>
   `;
 
   try {
-    // Проверяем корзину
     const cartData = await apiCart.getCart();
     const items = cartData.cart.items || [];
     const total = cartData.total || 0;
 
     if (items.length === 0) {
-      // Корзина пуста - идём в корзину
       router.navigateTo('/cart');
       return;
     }
 
     app.innerHTML = `
       <div class="wot-container">
-        <!-- Шапка -->
         <div class="delivery-header">
           <div class="header-left">
             <h1 class="shop-title">IYHAN<span class="accent">SHOP</span></h1>
-            <span class="delivery-subtitle">ОФОРМЛЕНИЕ ДОСТАВКИ</span>
+            <span class="delivery-subtitle">${t('delivery.title')}</span>
           </div>
           <div class="header-right">
             <button class="wot-btn" id="cart-btn">
               <i class="fas fa-shopping-cart btn-icon"></i>
-              Назад в корзину
+              ${t('nav.toCart')}
             </button>
             <button class="wot-btn" id="main-btn">
               <i class="fas fa-home btn-icon"></i>
-              Главная
+              ${t('nav.home')}
             </button>
             <button class="wot-btn" id="logout-btn">
               <i class="fas fa-sign-out-alt btn-icon"></i>
-              Выйти
+              ${t('nav.logout')}
             </button>
           </div>
         </div>
 
         <div class="delivery-content">
-          <!-- Левая часть - форма -->
           <div class="delivery-form-section">
             <h2 class="section-title">
               <i class="fas fa-truck"></i>
-              Данные для доставки
+              ${t('delivery.formTitle')}
             </h2>
             
             <form class="delivery-form" id="delivery-form" data-delivery>
               <div class="form-group">
                 <label class="wot-label" for="address">
-                  <i class="fas fa-user"></i>
-                  Никнейм *
+                  <i class="fas fa-map-marker-alt"></i>
+                  ${t('delivery.address')} *
                 </label>
                 <input type="text" id="address" name="address" class="wot-input" 
-                       placeholder="Ваш никнейм в игре" required>
+                       placeholder="${t('delivery.address')}" required>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="wot-label" for="phone">
                     <i class="fas fa-phone"></i>
-                    Телефон *
+                    ${t('delivery.phone')} *
                   </label>
                   <input type="tel" id="phone" name="phone" class="wot-input" 
-                         placeholder="+375 (29) 123-45-67" required>
+                         placeholder="${t('form.placeholder.phone')}" required>
                 </div>
 
                 <div class="form-group">
                   <label class="wot-label" for="email">
                     <i class="fas fa-envelope"></i>
-                    Email *
+                    ${t('delivery.email')} *
                   </label>
                   <input type="email" id="email" name="email" class="wot-input" 
-                         placeholder="example@mail.com" required>
+                         placeholder="${t('form.placeholder.email')}" required>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="wot-label">
                   <i class="fas fa-credit-card"></i>
-                  Способ оплаты *
+                  ${t('delivery.payment')} *
                 </label>
                 <div class="payment-methods">
                   <label class="payment-option">
                     <input type="radio" name="paymentMethod" value="card" checked>
                     <span class="payment-card">
                       <i class="fas fa-credit-card"></i>
-                      Банковская карта
+                      ${t('delivery.card')}
                     </span>
                   </label>
                   <label class="payment-option">
                     <input type="radio" name="paymentMethod" value="cash">
                     <span class="payment-cash">
                       <i class="fas fa-money-bill-wave"></i>
-                      Наличными при получении
+                      ${t('delivery.cash')}
                     </span>
                   </label>
                 </div>
               </div>
 
-              <!-- Форма данных карты -->
               <div class="card-form" id="card-form">
                 <div class="card-preview">
                   <div class="card-front">
@@ -125,12 +120,12 @@ export async function renderDeliveryPage() {
                     <div class="card-number-display" id="card-number-display">•••• •••• •••• ••••</div>
                     <div class="card-details">
                       <div class="card-holder-display">
-                        <span class="card-label">Держатель</span>
-                        <span id="card-holder-display">ИМЯ ФАМИЛИЯ</span>
+                        <span class="card-label">${t('delivery.cardHolder')}</span>
+                        <span id="card-holder-display">${t('delivery.holderPlaceholder')}</span>
                       </div>
                       <div class="card-expiry-display">
-                        <span class="card-label">Срок</span>
-                        <span id="card-expiry-display">MM/YY</span>
+                        <span class="card-label">${t('delivery.cardExpiry')}</span>
+                        <span id="card-expiry-display">${t('delivery.expiryPlaceholder')}</span>
                       </div>
                     </div>
                   </div>
@@ -140,35 +135,35 @@ export async function renderDeliveryPage() {
                   <div class="form-group">
                     <label class="wot-label" for="cardNumber">
                       <i class="fas fa-credit-card"></i>
-                      Номер карты *
+                      ${t('delivery.cardNumber')} *
                     </label>
                     <input type="text" id="cardNumber" name="cardNumber" class="wot-input card-input" 
-                           placeholder="0000 0000 0000 0000" maxlength="19" autocomplete="cc-number">
+                           placeholder="${t('delivery.cardPlaceholder')}" maxlength="19" autocomplete="cc-number">
                   </div>
                   
                   <div class="form-group">
                     <label class="wot-label" for="cardHolder">
                       <i class="fas fa-user"></i>
-                      Имя держателя *
+                      ${t('delivery.cardHolder')} *
                     </label>
                     <input type="text" id="cardHolder" name="cardHolder" class="wot-input" 
-                           placeholder="IVAN IVANOV" autocomplete="cc-name">
+                           placeholder="${t('delivery.holderPlaceholder')}" autocomplete="cc-name">
                   </div>
                   
                   <div class="form-row">
                     <div class="form-group">
                       <label class="wot-label" for="cardExpiry">
                         <i class="fas fa-calendar"></i>
-                        Срок действия *
+                        ${t('delivery.cardExpiry')} *
                       </label>
                       <input type="text" id="cardExpiry" name="cardExpiry" class="wot-input" 
-                             placeholder="MM/YY" maxlength="5" autocomplete="cc-exp">
+                             placeholder="${t('delivery.expiryPlaceholder')}" maxlength="5" autocomplete="cc-exp">
                     </div>
                     
                     <div class="form-group">
                       <label class="wot-label" for="cardCvv">
                         <i class="fas fa-lock"></i>
-                        CVV *
+                        ${t('delivery.cardCvv')} *
                       </label>
                       <input type="password" id="cardCvv" name="cardCvv" class="wot-input" 
                              placeholder="•••" maxlength="3" autocomplete="cc-csc">
@@ -177,11 +172,10 @@ export async function renderDeliveryPage() {
                 </div>
               </div>
 
-              <!-- Капча -->
               <div class="form-group captcha-group">
                 <label class="wot-label">
                   <i class="fas fa-shield-alt"></i>
-                  Подтвердите, что вы не робот
+                  ${t('delivery.captcha')}
                 </label>
                 <div class="captcha-box">
                   <span class="captcha-question" id="captcha-question"></span>
@@ -195,17 +189,16 @@ export async function renderDeliveryPage() {
 
               <button type="submit" class="wot-btn wot-btn-primary submit-order-btn">
                 <i class="fas fa-check"></i>
-                Подтвердить заказ
+                ${t('delivery.submit')}
               </button>
             </form>
           </div>
 
-          <!-- Правая часть - сводка заказа -->
           <div class="delivery-summary-section">
             <div class="order-summary">
               <h3 class="summary-title">
                 <i class="fas fa-clipboard-list"></i>
-                Ваш заказ
+                ${t('delivery.orderTitle')}
               </h3>
               
               <div class="order-items">
@@ -227,7 +220,7 @@ export async function renderDeliveryPage() {
               <hr class="summary-divider">
 
               <div class="summary-row summary-total">
-                <span>Итого к оплате:</span>
+                <span>${t('cart.toPay')}</span>
                 <span class="total-amount">
                   <i class="fas fa-coins"></i>
                   ${total.toLocaleString()}
@@ -236,44 +229,41 @@ export async function renderDeliveryPage() {
             </div>
 
             <div class="delivery-info-box">
-              <h4><i class="fas fa-info-circle"></i> Информация о доставке</h4>
+              <h4><i class="fas fa-info-circle"></i> ${t('delivery.infoTitle')}</h4>
               <ul>
-                <li><i class="fas fa-check"></i> Срок доставки: 5-10 минут</li>
-                <li><i class="fas fa-check"></i> Танк появится в вашем ангаре</li>
-                <li><i class="fas fa-check"></i> Гарантия на все товары</li>
+                <li><i class="fas fa-check"></i> ${t('delivery.info1')}</li>
+                <li><i class="fas fa-check"></i> ${t('delivery.info2')}</li>
+                <li><i class="fas fa-check"></i> ${t('delivery.info3')}</li>
               </ul>
             </div>
           </div>
         </div>
 
-        <!-- Футер -->
         <div class="shop-footer">
           <p>
             <i class="far fa-copyright"></i>
-            2026 IYHANSHOP - Официальный магазин танков
+            2026 IYHANSHOP - ${t('common.footer')}
           </p>
         </div>
       </div>
     `;
 
-    // Инициализация капчи
     generateCaptcha();
     setupEventListeners();
 
   } catch (err) {
     console.error('Ошибка загрузки страницы доставки:', err);
-    // Показываем ошибку вместо перенаправления
     app.innerHTML = `
       <div class="wot-container">
         <div class="error-message" style="text-align: center; padding: 50px;">
           <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #d32f2f;"></i>
-          <h2 style="margin-top: 20px;">Ошибка загрузки</h2>
+          <h2 style="margin-top: 20px;">${t('cart.error')}</h2>
           <p style="color: #888; margin: 10px 0;">Не удалось загрузить данные для оформления</p>
           <button class="wot-btn wot-btn-primary" onclick="window.location.reload()" style="margin-top: 20px;">
-            <i class="fas fa-sync-alt"></i> Обновить страницу
+            <i class="fas fa-sync-alt"></i> ${t('cart.retry')}
           </button>
           <button class="wot-btn" id="back-cart-btn" style="margin-left: 10px;">
-            <i class="fas fa-shopping-cart"></i> В корзину
+            <i class="fas fa-shopping-cart"></i> ${t('nav.toCart')}
           </button>
         </div>
       </div>
@@ -297,14 +287,12 @@ function generateCaptcha() {
 }
 
 function setupEventListeners() {
-  // Обновление капчи
   document.getElementById('refresh-captcha')?.addEventListener('click', () => {
     generateCaptcha();
     const input = document.getElementById('captcha-answer') as HTMLInputElement;
     if (input) input.value = '';
   });
 
-  // Переключение способов оплаты
   document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
     radio.addEventListener('change', (e) => {
       const target = e.target as HTMLInputElement;
@@ -319,7 +307,6 @@ function setupEventListeners() {
     });
   });
 
-  // Форматирование номера карты
   const cardNumberInput = document.getElementById('cardNumber') as HTMLInputElement;
   cardNumberInput?.addEventListener('input', (e) => {
     const target = e.target as HTMLInputElement;
@@ -331,14 +318,12 @@ function setupEventListeners() {
     }
     target.value = formatted;
     
-    // Обновление превью карты
     const display = document.getElementById('card-number-display');
     if (display) {
       display.textContent = formatted || '•••• •••• •••• ••••';
     }
   });
 
-  // Форматирование имени держателя
   const cardHolderInput = document.getElementById('cardHolder') as HTMLInputElement;
   cardHolderInput?.addEventListener('input', (e) => {
     const target = e.target as HTMLInputElement;
@@ -346,11 +331,10 @@ function setupEventListeners() {
     
     const display = document.getElementById('card-holder-display');
     if (display) {
-      display.textContent = target.value || 'ИМЯ ФАМИЛИЯ';
+      display.textContent = target.value || t('delivery.holderPlaceholder');
     }
   });
 
-  // Форматирование срока действия
   const cardExpiryInput = document.getElementById('cardExpiry') as HTMLInputElement;
   cardExpiryInput?.addEventListener('input', (e) => {
     const target = e.target as HTMLInputElement;
@@ -362,11 +346,10 @@ function setupEventListeners() {
     
     const display = document.getElementById('card-expiry-display');
     if (display) {
-      display.textContent = value || 'MM/YY';
+      display.textContent = value || t('delivery.expiryPlaceholder');
     }
   });
 
-  // Навигация
   document.getElementById('cart-btn')?.addEventListener('click', () => {
     router.navigateTo('/cart');
   });
@@ -384,7 +367,6 @@ function setupEventListeners() {
     }
   });
 
-  // Отправка формы
   document.getElementById('delivery-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -409,7 +391,6 @@ function setupEventListeners() {
       return;
     }
 
-    // Валидация данных карты при оплате картой
     if (paymentMethod === 'card') {
       const cardNumber = (document.getElementById('cardNumber') as HTMLInputElement)?.value.replace(/\s/g, '');
       const cardHolder = (document.getElementById('cardHolder') as HTMLInputElement)?.value.trim();
@@ -454,7 +435,6 @@ function setupEventListeners() {
 
       const response = await apiDelivery.createDelivery(deliveryData);
       
-      // Показываем успех
       showSuccessMessage(response.delivery.id);
       
     } catch (err) {
@@ -463,7 +443,7 @@ function setupEventListeners() {
       
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Подтвердить заказ';
+        submitBtn.innerHTML = `<i class="fas fa-check"></i> ${t('delivery.submit')}`;
       }
     }
   });
@@ -479,21 +459,21 @@ function showSuccessMessage(deliveryId: string) {
         <div class="success-icon">
           <i class="fas fa-check-circle"></i>
         </div>
-        <h1 class="success-title">Заказ успешно оформлен!</h1>
+        <h1 class="success-title">${t('delivery.success')}</h1>
         <p class="success-message">
-          Ваш заказ #${deliveryId} принят в обработку.
+          ${t('delivery.successId')} #${deliveryId} ${t('delivery.successDesc')}
         </p>
         <p class="success-details">
-          Танки будут доставлены в ваш ангар в течение 5-10 минут.
+          ${t('delivery.successDetail')}
         </p>
         <div class="success-actions">
           <button class="wot-btn wot-btn-primary" id="go-main-btn">
             <i class="fas fa-home"></i>
-            На главную
+            ${t('delivery.goHome')}
           </button>
           <button class="wot-btn" id="go-catalog-btn">
             <i class="fas fa-store"></i>
-            Продолжить покупки
+            ${t('delivery.continue')}
           </button>
         </div>
       </div>

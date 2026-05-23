@@ -2,6 +2,7 @@ import { api } from '../services/api.js';
 import { apiCart } from '../services/api_cart.js';
 import { router } from '../main.js';
 import { AuthResponse } from '../types/index.js';
+import { t } from '../services/locale.js';
 
 export async function renderMainPage() {
   const app = document.getElementById('app');
@@ -15,92 +16,94 @@ export async function renderMainPage() {
       { 
         id: 1,
         name: 'Объект 140', 
-        nation: 'СССР', 
+        nation: 'ussr', 
         tier: 10, 
         price: 6200,
         image: '/images/tanks_main/object-140.png',
-        advantage: 'Лучший СТ для рандома'
+        advantageKey: 'main.top1.advantage'
       },
       { 
         id: 9,
         name: 'ИС-7', 
-        nation: 'СССР', 
+        nation: 'ussr', 
         tier: 10, 
         price: 5900,
         image: '/images/tanks_main/is-7.png',
-        advantage: 'Легендарный тяж'
+        advantageKey: 'main.top2.advantage'
       },
       { 
         id: 2,
         name: 'E 100', 
-        nation: 'Германия', 
+        nation: 'germany', 
         tier: 10, 
         price: 6100,
         image: '/images/tanks_main/e-100.png',
-        advantage: 'Непробиваемая броня'
+        advantageKey: 'main.top3.advantage'
       }
     ];
 
     const advantages = [
-      { icon: 'fa-bolt', title: 'Мгновенная доставка', desc: 'Танк в ангаре через 5 минут' },
-      { icon: 'fa-shield-alt', title: 'Гарантия качества', desc: 'Все танки с полным обслуживанием' },
-      { icon: 'fa-tag', title: 'Лучшие цены', desc: 'На 20% дешевле чем в премиум магазине' },
-      { icon: 'fa-gift', title: 'Бонусы за покупку', desc: 'Кэшбек до 10% золотом' }
+      { icon: 'fa-bolt', title: t('main.advantage1.title'), desc: t('main.advantage1.desc') },
+      { icon: 'fa-shield-alt', title: t('main.advantage2.title'), desc: t('main.advantage2.desc') },
+      { icon: 'fa-tag', title: t('main.advantage3.title'), desc: t('main.advantage3.desc') },
+      { icon: 'fa-gift', title: t('main.advantage4.title'), desc: t('main.advantage4.desc') }
     ];
 
     const newsItems = [
-      { title: 'Скидка на советские танки', date: '27.02.2026', desc: '-15% на всю технику СССР' },
-      { title: 'Новогодний ивент', date: '25.02.2026', desc: 'Специальные предложения' },
-      { title: 'Пополнение в магазине', date: '20.02.2026', desc: 'Новые премиум танки' }
+      { title: t('main.news1.title'), date: '27.02.2026', desc: t('main.news1.desc') },
+      { title: t('main.news2.title'), date: '25.02.2026', desc: t('main.news2.desc') },
+      { title: t('main.news3.title'), date: '20.02.2026', desc: t('main.news3.desc') }
     ];
     
     app.innerHTML = `
       <div class="wot-container">
-        <!-- Шапка с приветствием и навигацией -->
         <div class="shop-header">
           <div class="header-left">
             <h1 class="shop-title">IYHAN<span class="accent">SHOP</span></h1>
             <p class="welcome-message">
               <i class="fas fa-hand-peace" style="margin-right: 5px;"></i>
-              С возвращением, командир ${user.nickname}!
+              ${t('main.welcome')} ${user.nickname}!
             </p>
           </div>
 
           <div class="header-right">
             <button class="wot-btn wot-btn-primary" id="catalog-btn">
               <i class="fas fa-store btn-icon"></i>
-              Каталог танков
+              ${t('nav.catalog')}
             </button>
             <button class="wot-btn" id="cart-btn">
               <i class="fas fa-shopping-cart btn-icon"></i>
-              Корзина
+              ${t('nav.cart')}
             </button>
             <button class="wot-btn" id="profile-btn">
               <i class="fas fa-user btn-icon"></i>
-              Профиль
+              ${t('nav.profile')}
+            </button>
+            <button class="wot-btn" id="main-admin-btn" style="display:none;">
+              <i class="fas fa-cog btn-icon"></i>
+              ${t('nav.admin')}
             </button>
             <button class="wot-btn" id="logout-btn">
               <i class="fas fa-sign-out-alt btn-icon"></i>
-              Выйти
+              ${t('nav.logout')}
             </button>
           </div>
 
         </div>
 
-        <!-- Промо-баннер -->
         <div class="promo-banner simple-timer-banner">
           <div class="promo-content">
             <span class="promo-tag">
               <i class="fas fa-clock"></i>
-              ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ
+              ${t('main.promo.tag')}
             </span>
-            <h2 class="promo-title">Скидка 25% на премиум технику</h2>
+            <h2 class="promo-title">${t('main.promo.title')}</h2>
             <p class="promo-text">
-              Только сегодня! Успейте пополнить ангар редкими машинами.
+              ${t('main.promo.text')}
             </p>
             <button class="wot-btn wot-btn-primary" id="promo-simple-btn">
               <i class="fas fa-gift btn-icon"></i>
-              ПЕРЕЙТИ К АКЦИИ
+              ${t('main.promo.btn')}
             </button>
           </div>
           <div class="promo-decoration timer-decoration">
@@ -109,16 +112,15 @@ export async function renderMainPage() {
               <div class="timer-display" id="simple-timer">
                 <span id="simple-hours">00</span>:<span id="simple-minutes">00</span>:<span id="simple-seconds">00</span>
               </div>
-              <div class="timer-label">до конца</div>
+              <div class="timer-label">${t('main.promo.until')}</div>
             </div>
           </div>
         </div>
 
-        <!-- Преимущества магазина -->
         <div class="advantages-section">
           <h2 class="section-title">
             <i class="fas fa-star" style="color: #ff7800; margin-right: 10px;"></i>
-            Почему выбирают <span class="accent">IYHANSHOP</span>
+            ${t('main.advantages.title')}
           </h2>
           <div class="advantages-grid">
             ${advantages.map(adv => `
@@ -133,11 +135,10 @@ export async function renderMainPage() {
           </div>
         </div>
 
-        <!-- Топ продаж -->
         <div class="top-sales-section">
           <h2 class="section-title">
             <i class="fas fa-crown" style="color: #ff7800; margin-right: 10px;"></i>
-            Топ продаж этой недели
+            ${t('main.topSales')}
           </h2>
           <div class="tanks-grid">
             ${topSellingTanks.map(tank => `
@@ -146,18 +147,18 @@ export async function renderMainPage() {
                   <img src="${tank.image}" alt="${tank.name}" class="tank-image">
                   <span class="tank-tier">
                     <i class="fas fa-layer-group" style="margin-right: 3px;"></i>
-                    ${tank.tier} ур.
+                    ${tank.tier} ${t('badge.level')}
                   </span>
                 </div>
                 <div class="tank-info">
                   <h3 class="tank-name">${tank.name}</h3>
                   <span class="tank-nation">
                     <i class="fas fa-flag" style="margin-right: 5px;"></i>
-                    ${tank.nation}
+                    ${t(`nation.${tank.nation}`)}
                   </span>
                   <p class="tank-advantage">
                     <i class="fas fa-medal" style="color: #ff7800; margin-right: 5px;"></i>
-                    ${tank.advantage}
+                    ${t(tank.advantageKey)}
                   </p>
                   <div class="tank-price-section">
                     <span class="tank-price">
@@ -166,7 +167,7 @@ export async function renderMainPage() {
                     </span>
                     <button class="wot-btn wot-btn-primary tank-buy-btn" data-tank-id="${tank.id}" data-tank-name="${tank.name}">
                       <i class="fas fa-shopping-cart" style="margin-right: 5px;"></i>
-                      Купить
+                      ${t('main.buy')}
                     </button>
                   </div>
                 </div>
@@ -175,17 +176,16 @@ export async function renderMainPage() {
           </div>
           <div class="section-footer">
             <button class="wot-btn" id="view-all-tanks">
-              Все танки 
+              ${t('main.allTanks')}
               <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
             </button>
           </div>
         </div>
 
-        <!-- Новости и события -->
         <div class="news-section">
           <h2 class="section-title">
             <i class="fas fa-newspaper" style="color: #ff7800; margin-right: 10px;"></i>
-            Новости магазина
+            ${t('main.news')}
           </h2>
           <div class="news-grid">
             ${newsItems.map(news => `
@@ -197,7 +197,7 @@ export async function renderMainPage() {
                 <h3 class="news-title">${news.title}</h3>
                 <p class="news-desc">${news.desc}</p>
                 <a href="#" class="news-link">
-                  Подробнее 
+                  ${t('common.readMore')}
                   <i class="fas fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i>
                 </a>
               </div>
@@ -205,64 +205,73 @@ export async function renderMainPage() {
           </div>
         </div>
 
-        <!-- Статистика магазина -->
         <div class="stats-bar">
           <div class="stat-item">
             <i class="fas fa-tachometer-alt stat-icon"></i>
             <span class="stat-value">1500+</span>
-            <span class="stat-label">Танков продано</span>
+            <span class="stat-label">${t('home.statsSold')}</span>
           </div>
           <div class="stat-item">
             <i class="fas fa-star stat-icon"></i>
             <span class="stat-value">98%</span>
-            <span class="stat-label">Довольных клиентов</span>
+            <span class="stat-label">${t('home.statsClients')}</span>
           </div>
           <div class="stat-item">
             <i class="fas fa-headset stat-icon"></i>
             <span class="stat-value">24/7</span>
-            <span class="stat-label">Поддержка</span>
+            <span class="stat-label">${t('home.statsSupport')}</span>
           </div>
           <div class="stat-item">
             <i class="fas fa-bolt stat-icon"></i>
             <span class="stat-value">5 мин</span>
-            <span class="stat-label">Доставка</span>
+            <span class="stat-label">${t('home.statsDelivery')}</span>
           </div>
         </div>
 
-        <!-- Футер -->
         <div class="shop-footer">
           <p>
             <i class="far fa-copyright" style="margin-right: 5px;"></i>
-            2026 IYHANSHOP - Официальный магазин танков
+            2026 IYHANSHOP - ${t('main.statLabel')}
           </p>
           <div class="footer-links">
             <a href="#">
               <i class="fas fa-info-circle" style="margin-right: 5px;"></i>
-              О нас
+              ${t('home.about')}
             </a>
             <a href="#">
               <i class="fas fa-envelope" style="margin-right: 5px;"></i>
-              Контакты
+              ${t('home.contacts')}
             </a>
             <a href="#">
               <i class="fas fa-truck" style="margin-right: 5px;"></i>
-              Доставка
+              ${t('home.delivery')}
             </a>
             <a href="#">
               <i class="fas fa-shield-alt" style="margin-right: 5px;"></i>
-              Гарантии
+              ${t('home.guarantees')}
             </a>
           </div>
         </div>
       </div>
     `;
 
+    checkAdminRole();
     setupEventListeners();
     startSimpleTimer();
 
   } catch {
     router.navigateTo('/');
   }
+}
+
+async function checkAdminRole() {
+  try {
+    const me = await api.getMe();
+    if (me.user && (me.user.role === 'admin' || me.user.role === 'owner')) {
+      const btn = document.getElementById('main-admin-btn');
+      if (btn) btn.style.display = 'inline-block';
+    }
+  } catch {}
 }
 
 function setupEventListeners() {
@@ -287,6 +296,10 @@ function setupEventListeners() {
     router.navigateTo('/profile');
   });
 
+  document.getElementById('main-admin-btn')?.addEventListener('click', () => {
+    router.navigateTo('/admin');
+  });
+
   document.getElementById('promo-simple-btn')?.addEventListener('click', () => {
     router.navigateTo('/catalog');
   });
@@ -306,17 +319,17 @@ function setupEventListeners() {
         target.innerHTML = '<i class="fas fa-check"></i> Добавлено!';
         target.classList.add('success');
         
-        showNotification(`${tankName} добавлен в корзину!`);
+        showNotification(`${tankName} ${t('notif.added')}`);
         
         setTimeout(() => {
-          target.innerHTML = '<i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> Купить';
+          target.innerHTML = `<i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> ${t('main.buy')}`;
           target.classList.remove('success');
           (target as HTMLButtonElement).disabled = false;
         }, 2000);
         
       } catch (err) {
         console.error(err);
-        target.innerHTML = '<i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> Купить';
+        target.innerHTML = `<i class="fas fa-shopping-cart" style="margin-right: 5px;"></i> ${t('main.buy')}`;
         (target as HTMLButtonElement).disabled = false;
         alert('Ошибка при добавлении в корзину. Попробуйте ещё раз.');
       }
