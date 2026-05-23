@@ -2,8 +2,8 @@ export interface User {
   id: string;
   nickname: string;
   email: string;
-  role?: 'user' | 'admin' | 'owner';
   phone?: string;
+  role?: 'user' | 'admin' | 'owner';
   createdAt?: string;
 }
 
