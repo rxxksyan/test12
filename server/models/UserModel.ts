@@ -66,21 +66,13 @@ export async function addLikedTags(userId: string, tags: string[]): Promise<void
   const users = await readUsers();
   const user = users.find(u => u.id === userId);
   if (!user) return;
-
-  if (!user.likedTags) {
-    user.likedTags = [];
-  }
-
+  if (!user.likedTags) { user.likedTags = []; }
   const now = Date.now();
   for (const tag of tags) {
     const existing = user.likedTags.find(lt => lt.tag === tag);
-    if (existing) {
-      existing.timestamp = now;
-    } else {
-      user.likedTags.push({ tag, timestamp: now });
-    }
+    if (existing) { existing.timestamp = now; }
+    else { user.likedTags.push({ tag, timestamp: now }); }
   }
-
   await writeUsers(users);
 }
 
@@ -88,9 +80,33 @@ export async function getUserLikedTags(userId: string): Promise<string[]> {
   const users = await readUsers();
   const user = users.find(u => u.id === userId);
   if (!user || !user.likedTags) return [];
-
   const threeDaysAgo = Date.now() - 3 * 24 * 60 * 60 * 1000;
   return user.likedTags
     .filter(lt => lt.timestamp > threeDaysAgo)
     .map(lt => lt.tag);
+}
+
+export async function hasLikedProduct(userId: string, productId: number): Promise<boolean> {
+  const users = await readUsers();
+  const user = users.find(u => u.id === userId);
+  if (!user || !user.likedProductIds) return false;
+  return user.likedProductIds.includes(productId);
+}
+
+export async function addLikedProduct(userId: string, productId: number): Promise<void> {
+  const users = await readUsers();
+  const user = users.find(u => u.id === userId);
+  if (!user) return;
+  if (!user.likedProductIds) user.likedProductIds = [];
+  if (!user.likedProductIds.includes(productId)) {
+    user.likedProductIds.push(productId);
+    await writeUsers(users);
+  }
+}
+
+export async function getUserLikedProductIds(userId: string): Promise<number[]> {
+  const users = await readUsers();
+  const user = users.find(u => u.id === userId);
+  if (!user || !user.likedProductIds) return [];
+  return user.likedProductIds;
 }
